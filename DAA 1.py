@@ -1,23 +1,30 @@
-# Function to count Fibonacci numbers in the given range [low, high]
-def countFibs(low, high):
-    # Initialize first three Fibonacci Numbers
-    f1, f2, f3 = 0, 1, 1
+#Non-Recursive
+def fibonacci_non_recursive(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        fib = [0] * (n + 1)
+        fib[0] = 0
+        fib[1] = 1
+        for i in range(2, n + 1):
+            fib[i] = fib[i - 1] + fib[i - 2]
+        return fib[n]
 
-    # Count Fibonacci numbers in the given range
-    result = 0
+# Test the non-recursive Fibonacci function
+n = 12
+print(f"Fibonacci({n}) = {fibonacci_non_recursive(n)}")
 
-    while f1 < low:
-        f1, f2, f3 = f2, f3, f1 + f2
+#Recursive
+def fibonacci_recursive(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
 
-    while f1 <= high:
-        result += 1
-        f1, f2, f3 = f2, f3, f1 + f2
-
-    return result
-
-# Driver program
-low = 10
-high = 100
-print("Count of Fibonacci Numbers is", countFibs(low, high))
-
-
+# Test the recursive Fibonacci function
+n = 10
+print(f"Fibonacci({n}) = {fibonacci_recursive(n)}")
